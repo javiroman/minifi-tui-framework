@@ -42,9 +42,50 @@
     </repository>
   </distributionManagement>
 
+  <profiles>
+    <profile>
+      <id>local-install</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+        <!--
+         Install development jar into $M2 user folder for
+         using in other applications in development time.
+
+         $ mvn package
+         $ mvn package -P local-install
+        -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-install-plugin</artifactId>
+            <version>2.5.2</version>
+            <configuration>
+              <groupId>com.github.javiroman</groupId>
+              <artifactId>minifi-tui-framework</artifactId>
+              <version>1.0.0-SNAPSHOT</version>
+              <packaging>jar</packaging>
+              <file>${basedir}/target/minifi-tui-framework-1.0.0-SNAPSHOT.jar</file>
+              <generatePom>true</generatePom>
+            </configuration>
+            <executions>
+              <execution>
+                <id>install-jar-lib</id>
+                <goals>
+                  <goal>install-file</goal>
+                </goals>
+                <phase>validate</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
   <build>
     <sourceDirectory>${project.basedir}/src</sourceDirectory>
-
     <resources>
       <resource>
         <directory>${project.basedir}/resources</directory>
@@ -119,36 +160,6 @@
           </execution>
         </executions>
       </plugin>
-
-      <!--
-        Install development jar into $M2 user folder for
-        using in other applications in development time.
-
-        $ mvn install:install-file
-      -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-install-plugin</artifactId>
-        <version>2.5.2</version>
-        <configuration>
-          <groupId>com.github.javiroman</groupId>
-          <artifactId>minifi-tui-framework</artifactId>
-          <version>1.0.0-SNAPSHOT</version>
-          <packaging>jar</packaging>
-          <file>${basedir}/target/minifi-tui-framework-1.0.0-SNAPSHOT.jar</file>
-          <generatePom>true</generatePom>
-        </configuration>
-        <executions>
-          <execution>
-            <id>install-jar-lib</id>
-            <goals>
-              <goal>install-file</goal>
-            </goals>
-            <phase>validate</phase>
-          </execution>
-        </executions>
-      </plugin>
     </plugins>
-
   </build>
 </project>
