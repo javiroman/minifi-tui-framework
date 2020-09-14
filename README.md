@@ -8,6 +8,21 @@ Interface library.
 The idea is to adapt this awesome library for using in the parent
 project MiNiFi TUI for managing Apache MiNiFi instances.
 
+Usage
+=====
+
+```
+java -jar target/minifi-tui-framework-1.0.0-SNAPSHOT.jar
+java -cp target/minifi-tui-framework-1.0.0-SNAPSHOT.jar minifi.tui.framework.demos.Demo1
+java -cp target/minifi-tui-framework-1.0.0-SNAPSHOT.jar minifi.tui.framework.demos.Demo2 PORT
+java -cp target/minifi-tui-framework-1.0.0-SNAPSHOT.jar minifi.tui.framework.demos.Demo3
+java -cp target/minifi-tui-framework-1.0.0-SNAPSHOT.jar minifi.tui.framework.demos.Demo4
+java -cp target/minifi-tui-framework-1.0.0-SNAPSHOT.jar minifi.tui.framework.demos.Demo5
+java -cp target/minifi-tui-framework-1.0.0-SNAPSHOT.jar minifi.tui.framework.demos.Demo6
+java -cp target/minifi-tui-framework-1.0.0-SNAPSHOT.jar minifi.tui.framework.demos.Demo7
+
+```
+
 
 License
 -------
